@@ -1,4 +1,5 @@
 using AutoShop.Data;
+using AutoShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,10 +31,25 @@ namespace AutoShop
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(IdentityHelper.SetIdentityOptions)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+        }
+
+        private static void SetIdentityOptions(IdentityOptions options)
+        {
+            // Setting sign in option
+            options.SignIn.RequireConfirmedEmail = false;
+            options.SignIn.RequireConfirmedPhoneNumber = false;
+
+            // Set password strength
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequiredLength = 8;
+            options.Password.RequireNonAlphanumeric = false;
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
