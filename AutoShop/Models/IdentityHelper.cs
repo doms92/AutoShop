@@ -21,6 +21,10 @@ namespace AutoShop.Models
             options.Password.RequiredLength = 8;
             options.Password.RequireNonAlphanumeric = false;
 
+            // Set Lockout Options
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+            options.Lockout.MaxFailedAccessAttempts = 5;
+
         }
     }
 }
