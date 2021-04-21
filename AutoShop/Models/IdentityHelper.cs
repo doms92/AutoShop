@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +30,7 @@ namespace AutoShop.Models
             options.Lockout.MaxFailedAccessAttempts = 5;
 
         }
+
 
         public static async Task CreateRoles(IServiceProvider provider,
            params string[] roles)
