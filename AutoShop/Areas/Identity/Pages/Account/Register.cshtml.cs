@@ -41,8 +41,6 @@ namespace AutoShop.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
-        
-
         public class InputModel
         {
             [Required]

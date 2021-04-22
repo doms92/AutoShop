@@ -91,6 +91,8 @@ namespace AutoShop
             IdentityHelper.CreateRoles(serviceProvider.ServiceProvider
                 , IdentityHelper.ShopManager
                 , IdentityHelper.Customer).Wait();
+            IdentityHelper.CreateShopManager(serviceProvider.ServiceProvider)
+                .Wait();
 
 
         }
