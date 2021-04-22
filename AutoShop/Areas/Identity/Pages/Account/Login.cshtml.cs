@@ -43,7 +43,6 @@ namespace AutoShop.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [EmailAddress]
             public string Username { get; set; }
 
             [Required]
