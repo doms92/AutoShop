@@ -51,5 +51,28 @@ namespace AutoShop.Models
             }
         }
 
+        internal static async Task CreateShopManager(IServiceProvider serviceProvider)
+        {
+            const string email = "admin@autoshop.com";
+            const string username = "shopmanager";
+            const string password = "AutoShop";
+
+            var userManager = serviceProvider.GetRequiredService <UserManager<IdentityUser>> ();
+
+            // Check if any users are in database
+            if(userManager.Users.Count() == 0)
+            {
+                IdentityUser shopmanager = new IdentityUser()
+                {
+                    Email = email,
+                    UserName = username
+                };
+
+                // Create Shop Manager
+                await userManager.CreateAsync(shopmanager, password);
+                
+                await userManager.AddToRoleAsync(shopmanager, ShopManager);
+            }
+        }
     }
 }
