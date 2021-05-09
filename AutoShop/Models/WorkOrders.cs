@@ -17,4 +17,9 @@ namespace AutoShop.Models
 
         
     }
+
+    public class WorkOrder : WorkOrders
+    {
+        public string EmbedCode { get; set; }
+    }
 }
