@@ -14,6 +14,6 @@ namespace AutoShop.Data
         {
         }
 
-        public DbSet<WorkOrders> WorkOrder { get; set; }
+        public DbSet<WorkOrder> WorkOrders { get; set; }
     }
 }
