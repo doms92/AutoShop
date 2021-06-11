@@ -15,13 +15,13 @@ namespace AutoShop.Models
 
         public string Description { get; set; }
 
-        public decimal Price { get; set; }
+        public List<AutoParts>AutoParts { get; set; }
 
-        public string ImageUrl { get; set; }
+        
 
-        public string ThumbnailURL { get; set; }
+        
 
-        public bool IsInStock { get; set; }
+        
         
     }
 
