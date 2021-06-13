@@ -5,13 +5,19 @@ using System.Threading.Tasks;
 
 namespace AutoShop.Models
 {
-    public interface AutoPartRepository
+    public class AutoPartRepository : IAutoPartRepository
     {
-        IEnumerable<AutoParts> GetAllAutoParts { get; }
+        private readonly IWorkOrderRepository workOrderRepository = new IWorkOrderRepository();
+        public IEnumerable<AutoParts> GetAllAutoParts => new List<AutoParts>
+        {
+            new AutoParts {AutoPartsId = 1, Name="Mozzy", Price = 76M, Description="GT, 2018"}
+        };
 
-        IEnumerable<AutoParts> GetAutoPartsOnSale { get; }
+        public IEnumerable<AutoParts> GetAutoPartsOnSale => throw new NotImplementedException();
 
-        AutoParts GetAutoPartsById(int autoPartsId);
-
+        public AutoParts GetAutoPartsById(int autoPartsId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
