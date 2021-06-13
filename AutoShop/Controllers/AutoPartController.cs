@@ -18,5 +18,10 @@ namespace AutoShop.Controllers
             _workOrderRepository = workOrderRepository;
 
         }
+
+        public ViewResult List()
+        {
+            return View(_autoPartRepository.GetAllAutoParts);
+        }
     }
 }
