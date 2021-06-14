@@ -29,7 +29,7 @@ namespace AutoShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IWorkOrderRepository, WorkOrderRepositoryb>();
-            services.AddScoped<IAutoPartRepository, AutoPartRepository>();
+            services.AddScoped<IAutoPartRepository, AutoPartsRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));

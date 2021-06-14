@@ -1,4 +1,5 @@
 ﻿using AutoShop.Models;
+using AutoShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,14 @@ namespace AutoShop.Controllers
 
         }
 
-        public ViewResult List()
+        public IActionResult List()
         {
-            return View(_autoPartRepository.GetAllAutoParts);
+            var autopartListViewModel = new AutoPartListViewModel();
+            autopartListViewModel.auparts = _autoPartRepository.GetAllAutoParts;
+            autopartListViewModel.CurrentWorkOrder = "BestSellers";
+            return View(autopartListViewModel);
+  
+           // return View(_autoPartRepository.GetAllAutoParts);
         }
     }
 }

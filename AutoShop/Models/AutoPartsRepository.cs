@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AutoShop.Models
 {
-    public class AutoPartRepository : IAutoPartRepository
+    public class AutoPartsRepository : IAutoPartRepository
     {
         private readonly IWorkOrderRepository workOrderRepository = new IWorkOrderRepository();
         public IEnumerable<AutoParts> GetAllAutoParts => new List<AutoParts>
