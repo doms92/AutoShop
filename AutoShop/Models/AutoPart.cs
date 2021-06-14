@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutoShop.Models
 {
-    public class AutoParts
+    public class AutoPart
     {
+        [Key]
         public int AutoPartsId { get; set; }
         public string Name { get; set; }
 
@@ -24,6 +26,6 @@ namespace AutoShop.Models
 
         public int CategoryId { get; set; }
 
-        public WorkOrders WorkOrders { get; set; }
+        public WorkOrder WorkOrders { get; set; }
     }
 }

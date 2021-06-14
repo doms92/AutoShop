@@ -23,7 +23,7 @@ namespace AutoShop.Controllers
         public IActionResult List()
         {
             var autopartListViewModel = new AutoPartListViewModel();
-            autopartListViewModel.auparts = _autoPartRepository.GetAllAutoParts;
+            autopartListViewModel.AutoParts = _autoPartRepository.GetAllAutoParts;
             autopartListViewModel.CurrentWorkOrder = "BestSellers";
             return View(autopartListViewModel);
   

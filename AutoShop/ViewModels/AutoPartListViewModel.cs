@@ -8,7 +8,7 @@ namespace AutoShop.ViewModels
 {
     public class AutoPartListViewModel
     {
-        public IEnumerable<AutoParts> auparts { get; set; }
+        public IEnumerable<AutoPart> AutoParts { get; set; }
         public string CurrentWorkOrder { get; set; }
     }
 }

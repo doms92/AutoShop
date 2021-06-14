@@ -8,14 +8,14 @@ namespace AutoShop.Models
     public class AutoPartsRepository : IAutoPartRepository
     {
         private readonly IWorkOrderRepository workOrderRepository = new IWorkOrderRepository();
-        public IEnumerable<AutoParts> GetAllAutoParts => new List<AutoParts>
+        public IEnumerable<AutoPart> GetAllAutoParts => new List<AutoPart>
         {
-            new AutoParts {AutoPartsId = 1, Name="Mozzy", Price = 76M, Description="GT, 2018"}
+            new AutoPart {AutoPartsId = 1, Name="Mozzy", Price = 76M, Description="GT, 2018"}
         };
 
-        public IEnumerable<AutoParts> GetAutoPartsOnSale => throw new NotImplementedException();
+        public IEnumerable<AutoPart> GetAutoPartsOnSale => throw new NotImplementedException();
 
-        public AutoParts GetAutoPartsById(int autoPartsId)
+        public AutoPart GetAutoPartsById(int autoPartsId)
         {
             throw new NotImplementedException();
         }

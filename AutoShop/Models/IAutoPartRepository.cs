@@ -7,11 +7,11 @@ namespace AutoShop.Models
 {
     public interface IAutoPartRepository
     {
-        IEnumerable<AutoParts> GetAllAutoParts { get; }
+        IEnumerable<AutoPart> GetAllAutoParts { get; }
 
-        IEnumerable<AutoParts> GetAutoPartsOnSale { get; }
+        IEnumerable<AutoPart> GetAutoPartsOnSale { get; }
 
-        AutoParts GetAutoPartsById(int autoPartsId);
+        AutoPart GetAutoPartsById(int autoPartsId);
 
     }
 }
