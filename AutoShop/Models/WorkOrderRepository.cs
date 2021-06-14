@@ -5,8 +5,12 @@ using System.Threading.Tasks;
 
 namespace AutoShop.Models
 {
-    public class WorkOrderRepository
+    public class WorkOrderRepository : IWorkOrderRepository
     {
-        IEnumerable<WorkOrder> GetAllWorkOrders { get; }
+        public IEnumerable<WorkOrder> GetAllWorkOrders => new List<WorkOrder>
+        {
+            new WorkOrder{WorkOrderId=1, WorkOrderName="", WorkOrderDescription=""}
+
+        };
     }
 }
