@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,17 +8,39 @@ namespace AutoShop.Models
 {
     public class AutoPartsRepository : IAutoPartRepository
     {
-        private readonly IWorkOrderRepository workOrderRepository = new IWorkOrderRepository();
-        public IEnumerable<AutoPart> GetAllAutoParts => new List<AutoPart>
-        {
-            new AutoPart {AutoPartsId = 1, Name="Mozzy", Price = 76M, Description="GT, 2018"}
-        };
+        private readonly AppDbContext _appDbContext;
 
-        public IEnumerable<AutoPart> GetAutoPartsOnSale => throw new NotImplementedException();
+        public AutoPartsRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+        public IEnumerable<AutoPart> GetAllAutoParts 
+        {
+            get
+            {
+                return _appDbContext.AutoParts.Include(c => c.WorkOrders);
+            }
+                
+            
+        }
+
+        public IEnumerable<AutoPart> GetAutoPartsOnSale
+        {
+            get
+            {
+                return _appDbContext.AutoParts.Include(c => c.WorkOrders).Where(p => p.IsOnSale);
+            }
+
+        }
+
 
         public AutoPart GetAutoPartsById(int autoPartsId)
         {
-            throw new NotImplementedException();
+            
+            {
+                return _appDbContext.AutoParts.FirstOrDefault(c => c.AutoPartsId == autoPartsId); ;
+            }
+
         }
     }
 }
