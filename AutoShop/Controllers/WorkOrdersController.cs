@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AutoShop.Data;
+
 using AutoShop.Models;
 using Microsoft.AspNetCore.Authorization;
 
@@ -14,9 +14,9 @@ namespace AutoShop.Controllers
     [Authorize(Roles = IdentityHelper.ShopManager)]
     public class WorkOrdersController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AppDbContext _context;
 
-        public WorkOrdersController(ApplicationDbContext context)
+        public WorkOrdersController(AppDbContext context)
         {
             _context = context;
         }
@@ -25,7 +25,7 @@ namespace AutoShop.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.WorkOrders.ToListAsync());
+            return View(await _context.workOrders.ToListAsync());
         }
 
         // GET: WorkOrders/Details/5
@@ -36,7 +36,7 @@ namespace AutoShop.Controllers
                 return NotFound();
             }
 
-            var workOrder = await _context.WorkOrders
+            var workOrder = await _context.workOrders
                 .FirstOrDefaultAsync(m => m.WorkOrderId == id);
             if (workOrder == null)
             {
@@ -76,7 +76,7 @@ namespace AutoShop.Controllers
                 return NotFound();
             }
 
-            var workOrder = await _context.WorkOrders.FindAsync(id);
+            var workOrder = await _context.workOrders.FindAsync(id);
             if (workOrder == null)
             {
                 return NotFound();
@@ -127,7 +127,7 @@ namespace AutoShop.Controllers
                 return NotFound();
             }
 
-            var workOrder = await _context.WorkOrders
+            var workOrder = await _context.workOrders
                 .FirstOrDefaultAsync(m => m.WorkOrderId == id);
             if (workOrder == null)
             {
@@ -142,15 +142,15 @@ namespace AutoShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var workOrder = await _context.WorkOrders.FindAsync(id);
-            _context.WorkOrders.Remove(workOrder);
+            var workOrder = await _context.workOrders.FindAsync(id);
+            _context.workOrders.Remove(workOrder);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool WorkOrderExists(int id)
         {
-            return _context.WorkOrders.Any(e => e.WorkOrderId == id);
+            return _context.workOrders.Any(e => e.WorkOrderId == id);
         }
     }
 }

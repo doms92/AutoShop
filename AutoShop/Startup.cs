@@ -1,4 +1,4 @@
-using AutoShop.Data;
+using AutoShop.Migrations;
 using AutoShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,19 +25,21 @@ namespace AutoShop
 
         public IConfiguration Configuration { get; }
 
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString
+                ("DefaultConnection")));
+
+            services.AddRazorPages();
+            services.AddControllersWithViews();
             services.AddScoped<IWorkOrderRepository, WorkOrderRepository>();
             services.AddScoped<IAutoPartRepository, AutoPartsRepository>();
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(IdentityHelper.SetIdentityOptions)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+       
         }
 
         private static void SetIdentityOptions(IdentityOptions options)
@@ -90,11 +92,11 @@ namespace AutoShop
                 .GetRequiredService<IServiceProvider>()
                 .CreateScope();
 
-            IdentityHelper.CreateRoles(serviceProvider.ServiceProvider
-                , IdentityHelper.ShopManager
-                , IdentityHelper.Customer).Wait();
-            IdentityHelper.CreateShopManager(serviceProvider.ServiceProvider)
-                .Wait();
+            //IdentityHelper.CreateRoles(serviceProvider.ServiceProvider
+              //  , IdentityHelper.ShopManager
+               // , IdentityHelper.Customer).Wait();
+           // IdentityHelper.CreateShopManager(serviceProvider.ServiceProvider)
+             //   .Wait();
 
 
         }
