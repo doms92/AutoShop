@@ -1,4 +1,4 @@
-using AutoShop.Migrations;
+
 using AutoShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,21 +25,19 @@ namespace AutoShop
 
         public IConfiguration Configuration { get; }
 
-
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString
-                ("DefaultConnection")));
-
-            services.AddRazorPages();
-            services.AddControllersWithViews();
             services.AddScoped<IWorkOrderRepository, WorkOrderRepository>();
             services.AddScoped<IAutoPartRepository, AutoPartsRepository>();
-       
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+           
+                
+                
+            services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         private static void SetIdentityOptions(IdentityOptions options)
@@ -83,7 +81,7 @@ namespace AutoShop
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=AutoPart}/{action=List}/{id?}");
                 endpoints.MapRazorPages();
             });
 
@@ -92,11 +90,7 @@ namespace AutoShop
                 .GetRequiredService<IServiceProvider>()
                 .CreateScope();
 
-            //IdentityHelper.CreateRoles(serviceProvider.ServiceProvider
-              //  , IdentityHelper.ShopManager
-               // , IdentityHelper.Customer).Wait();
-           // IdentityHelper.CreateShopManager(serviceProvider.ServiceProvider)
-             //   .Wait();
+         
 
 
         }

@@ -29,5 +29,14 @@ namespace AutoShop.Controllers
   
            // return View(_autoPartRepository.GetAllAutoParts);
         }
+
+        public IActionResult Details(int id)
+        {
+            var autoparts = _autoPartRepository.GetAutoPartsById(id);
+            if (autoparts == null)
+                return View(autoparts);
+
+            return View(autoparts);
+        }
     }
 }
