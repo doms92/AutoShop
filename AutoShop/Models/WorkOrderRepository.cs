@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 
 namespace AutoShop.Models
 {
+    
     public class WorkOrderRepository : IWorkOrderRepository
     {
-        public IEnumerable<WorkOrder> GetAllWorkOrders => new List<WorkOrder>
-        {
-            new WorkOrder{WorkOrderId=1, WorkOrderName="", WorkOrderDescription=""}
+        private readonly AppDbContext _appDbContext;
 
-        };
+        public WorkOrderRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+        IEnumerable<WorkOrder> GetAllWorkOrders => _appDbContext.workOrders;
+   
     }
 }
