@@ -3,18 +3,6 @@
 <h1>@Model.CurrentWorkOrder</h1>
 @foreach (var autopart in Model.AutoParts)
             {
-                <div class="col-sm-4 col-lg-4 col-md-4" >
-                    <div class="thumbnail">
-                        <img src="@autopart.ImageThumbnailUrl" alt="image for auto shop" />
-                        <div class="caption">
-                            <h3 class="pull-right">@autopart.Price.ToString("c")</h3>
-                            <h3>@autopart.Name</h3>
-                            <p>@autopart.Description</p>
-                        </div>
-                    </div>
-                    <h2>@autopart.Name</h2>
-                    <h3>@autopart.Price.ToString("c")</h3>
-                    <h4>@autopart.Description</h4>
-                </div>
+                <partial name="_autopartCard" model="autopart" />
             }
 

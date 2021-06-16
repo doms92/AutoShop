@@ -45,11 +45,11 @@ namespace AutoShop.Models
             {
                 AutoPartsId = 1,
                 Name = "Pirelli Tires",
-                Price = 4.95M,
+                Price = 335.00M,
                 Description = "Pirelli, Foreign",
                 CategoryId = 1,
-                ImageUrl = "\\images\\pzero.jpg",
-                ImageThumbnailUrl = "\\images\\thumbnails\\pi.jpg",
+                ImageUrl = "\\Images\\",
+                ImageThumbnailUrl = "\\Images\\thumbnails\\pi.jpg",
                 IsInStock=true,
                 IsOnSale = false
             });
@@ -57,10 +57,10 @@ namespace AutoShop.Models
             {
                 AutoPartsId = 2,
                 Name = "Stock Engine",
-                Price = 4.95M,
+                Price = 1000.00M,
                 Description = "USA Engine",
                 CategoryId = 1,
-                ImageUrl = "\\images\\engine.jpg",
+                ImageUrl = "\\Images\\engine.jpg",
                 ImageThumbnailUrl = "\\Images\\thumbnails\\eng.jpg",
                 IsInStock = true,
                 IsOnSale = false
@@ -69,11 +69,11 @@ namespace AutoShop.Models
             {
                 AutoPartsId = 3,
                 Name = "Stock Alternator",
-                Price = 4.95M,
+                Price = 222.00M,
                 Description = "USA Alternator",
                 CategoryId = 1,
-                ImageUrl = "\\images\\alternator.jpg",
-                ImageThumbnailUrl = "\\images\\thumbnails\\alt.jpg",
+                ImageUrl = "\\Images\\alternator.jpg",
+                ImageThumbnailUrl = "\\Images\\thumbnails\\alt.jpg",
                 IsInStock = true,
                 IsOnSale = true
             });

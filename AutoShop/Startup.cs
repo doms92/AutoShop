@@ -1,4 +1,4 @@
-using AutoShop.Migrations;
+
 using AutoShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,37 +25,24 @@ namespace AutoShop
 
         public IConfiguration Configuration { get; }
 
-
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString
-                ("DefaultConnection")));
-
-            services.AddRazorPages();
-            services.AddControllersWithViews();
             services.AddScoped<IWorkOrderRepository, WorkOrderRepository>();
             services.AddScoped<IAutoPartRepository, AutoPartsRepository>();
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+           
+                
+                
+            services.AddControllersWithViews();
+           
+        }
+
        
-        }
-
-        private static void SetIdentityOptions(IdentityOptions options)
-        {
-            // Setting sign in option
-            options.SignIn.RequireConfirmedEmail = false;
-            options.SignIn.RequireConfirmedPhoneNumber = false;
-
-            // Set password strength
-            options.Password.RequireDigit = false;
-            options.Password.RequireLowercase = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequiredLength = 8;
-            options.Password.RequireNonAlphanumeric = false;
             
-        }
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -83,20 +70,13 @@ namespace AutoShop
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    );
+                
             });
 
-            // Create roles here
-          IServiceScope serviceProvider = app.ApplicationServices
-                .GetRequiredService<IServiceProvider>()
-                .CreateScope();
-
-            //IdentityHelper.CreateRoles(serviceProvider.ServiceProvider
-              //  , IdentityHelper.ShopManager
-               // , IdentityHelper.Customer).Wait();
-           // IdentityHelper.CreateShopManager(serviceProvider.ServiceProvider)
-             //   .Wait();
+           
+         
 
 
         }
