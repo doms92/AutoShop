@@ -1,4 +1,5 @@
 ﻿using AutoShop.Models;
+using AutoShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,27 +12,22 @@ namespace AutoShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IAutoPartRepository _autoPartRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IAutoPartRepository autoPartRepository)
         {
-            _logger = logger;
+            _autoPartRepository = autoPartRepository;
         }
-
         public IActionResult Index()
         {
-            return View();
+            var homeViewModel = new HomeViewModel
+            {
+                AutoPartsOnSale = _autoPartRepository.GetAutoPartsOnSale
+            };
+
+            return View(homeViewModel);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+      
     }
 }

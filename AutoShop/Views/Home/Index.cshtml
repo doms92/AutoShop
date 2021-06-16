@@ -1,8 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model AutoShop.ViewModels.HomeViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<partial name="_Carousel" />
+
+<h2>Auto Parts On Sale</h2>
+
+<div class="row">
+    @foreach(var autopart in Model.AutoPartsOnSale)
+            {
+                <partial name="_autopartCard" model="autopart" />
+            }
 </div>

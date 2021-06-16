@@ -48,7 +48,7 @@ namespace AutoShop.Models
                 Price = 335.00M,
                 Description = "Pirelli, Foreign",
                 CategoryId = 1,
-                ImageUrl = "\\Images\\pzero.jpg",
+                ImageUrl = "\\Images\\",
                 ImageThumbnailUrl = "\\Images\\thumbnails\\pi.jpg",
                 IsInStock=true,
                 IsOnSale = false
