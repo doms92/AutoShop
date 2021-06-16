@@ -65,37 +65,60 @@ namespace AutoShop.Migrations
                             AutoPartsId = 1,
                             CategoryId = 1,
                             Description = "Pirelli, Foreign",
-                            ImageThumbnailUrl = "",
-                            ImageUrl = "`\\images\\pzero.jpg",
+                            ImageThumbnailUrl = "\\Images\\thumbnails\\pi.jpg",
+                            ImageUrl = "\\Images\\",
                             IsInStock = true,
                             IsOnSale = false,
                             Name = "Pirelli Tires",
-                            Price = 4.95m
+                            Price = 335.00m
                         },
                         new
                         {
                             AutoPartsId = 2,
                             CategoryId = 1,
                             Description = "USA Engine",
-                            ImageThumbnailUrl = "",
-                            ImageUrl = "`\\images\\engine.jpg",
+                            ImageThumbnailUrl = "\\Images\\thumbnails\\eng.jpg",
+                            ImageUrl = "\\Images\\engine.jpg",
                             IsInStock = true,
                             IsOnSale = false,
                             Name = "Stock Engine",
-                            Price = 4.95m
+                            Price = 1000.00m
                         },
                         new
                         {
                             AutoPartsId = 3,
                             CategoryId = 1,
                             Description = "USA Alternator",
-                            ImageThumbnailUrl = "",
-                            ImageUrl = "`\\images\\alternator.jpg",
+                            ImageThumbnailUrl = "\\Images\\thumbnails\\alt.jpg",
+                            ImageUrl = "\\Images\\alternator.jpg",
                             IsInStock = true,
                             IsOnSale = true,
                             Name = "Stock Alternator",
-                            Price = 4.95m
+                            Price = 222.00m
                         });
+                });
+
+            modelBuilder.Entity("AutoShop.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AutoPartsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("AutoPartsId");
+
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("AutoShop.Models.WorkOrder", b =>
@@ -138,6 +161,13 @@ namespace AutoShop.Migrations
                     b.HasOne("AutoShop.Models.WorkOrder", "WorkOrders")
                         .WithMany("AutoParts")
                         .HasForeignKey("WorkOrdersWorkOrderId");
+                });
+
+            modelBuilder.Entity("AutoShop.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("AutoShop.Models.AutoPart", "AutoPart")
+                        .WithMany()
+                        .HasForeignKey("AutoPartsId");
                 });
 #pragma warning restore 612, 618
         }
