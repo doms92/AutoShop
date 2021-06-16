@@ -32,11 +32,11 @@ namespace AutoShop.Controllers
 
         public IActionResult Details(int id)
         {
-            var autoparts = _autoPartRepository.GetAutoPartsById(id);
-            if (autoparts == null)
-                return View(autoparts);
+            var autopart = _autoPartRepository.GetAutoPartsById(id);
+            if (autopart == null)
+                return NotFound();
 
-            return View(autoparts);
+            return View(autopart);
         }
     }
 }
