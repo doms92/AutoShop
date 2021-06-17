@@ -16,6 +16,7 @@ namespace AutoShop.Models
 
         public DbSet<AutoPart> AutoParts { get; set; }
         public DbSet<WorkOrder> workOrders { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
