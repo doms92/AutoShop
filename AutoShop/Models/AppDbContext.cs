@@ -49,9 +49,9 @@ namespace AutoShop.Models
                 Price = 335.00M,
                 Description = "Pirelli, Foreign",
                 CategoryId = 1,
-                ImageUrl = "\\Images\\",
-                ImageThumbnailUrl = "\\Images\\thumbnails\\pi.jpg",
-                IsInStock=true,
+                ImageUrl = "",
+                ImageThumbnailUrl = "",
+                IsInStock =true,
                 IsOnSale = false
             });
             modelBuilder.Entity<AutoPart>().HasData(new AutoPart
@@ -61,8 +61,8 @@ namespace AutoShop.Models
                 Price = 1000.00M,
                 Description = "USA Engine",
                 CategoryId = 1,
-                ImageUrl = "\\Images\\engine.jpg",
-                ImageThumbnailUrl = "\\Images\\thumbnails\\eng.jpg",
+                ImageUrl = "\\Images\\thumbnails\\eng.jpg",
+                ImageThumbnailUrl = "\\Images\\engine.jpg",
                 IsInStock = true,
                 IsOnSale = false
             });
@@ -73,8 +73,8 @@ namespace AutoShop.Models
                 Price = 222.00M,
                 Description = "USA Alternator",
                 CategoryId = 1,
-                ImageUrl = "\\Images\\alternator.jpg",
-                ImageThumbnailUrl = "\\Images\\thumbnails\\alt.jpg",
+                ImageUrl = "\\Images\\thumbnails\\alt.jpg",
+                ImageThumbnailUrl = "\\Images\\alternator.jpg",
                 IsInStock = true,
                 IsOnSale = true
             });
